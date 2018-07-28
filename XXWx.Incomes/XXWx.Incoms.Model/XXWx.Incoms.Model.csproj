@@ -43,15 +43,15 @@
     <Compile Include="Bank.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="BankCard.cs">
+      <DependentUpon>BankModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BankCardBalan.cs">
+      <DependentUpon>BankModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="BankModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Card.cs">
-      <DependentUpon>BankModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CardBalance.cs">
       <DependentUpon>BankModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

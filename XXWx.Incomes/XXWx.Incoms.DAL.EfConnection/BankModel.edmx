@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bCardsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="bCardsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Banks">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,162 +12,179 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
         </EntityType>
-        <EntityType Name="CardBalance">
+        <EntityType Name="BankCardBalans">
           <Key>
-            <PropertyRef Name="CardId" />
-            <PropertyRef Name="Date" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CardId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="Balance" Type="money" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Balans" Type="money" Nullable="false" />
         </EntityType>
-        <EntityType Name="Cards">
+        <EntityType Name="BankCards">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="64" Nullable="false" />
-          <Property Name="BankId" Type="int" Nullable="false" />
-          <Property Name="ExparyDate" Type="datetime" />
+          <Property Name="BankId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="ExpiryDate" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
-        <Association Name="FK__CardBalan__CardI__35BCFE0A">
-          <End Role="Cards" Type="Self.Cards" Multiplicity="1" />
-          <End Role="CardBalance" Type="Self.CardBalance" Multiplicity="*" />
+        <EntityType Name="Banks1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="120" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="Logo" Type="image" />
+        </EntityType>
+        <Association Name="FK__BankCardB__CardI__5BE2A6F2">
+          <End Role="Banks1" Type="Self.Banks1" Multiplicity="1" />
+          <End Role="BankCardBalans" Type="Self.BankCardBalans" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Cards">
+            <Principal Role="Banks1">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CardBalance">
+            <Dependent Role="BankCardBalans">
               <PropertyRef Name="CardId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cards__BankId__2B3F6F97">
-          <End Role="Banks" Type="Self.Banks" Multiplicity="1" />
-          <End Role="Cards" Type="Self.Cards" Multiplicity="*" />
+        <Association Name="FK__BankCards__BankI__5812160E">
+          <End Role="Banks1" Type="Self.Banks1" Multiplicity="1" />
+          <End Role="BankCards" Type="Self.BankCards" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Banks">
+            <Principal Role="Banks1">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Cards">
+            <Dependent Role="BankCards">
               <PropertyRef Name="BankId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="bCardsModelStoreContainer">
           <EntitySet Name="Banks" EntityType="Self.Banks" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CardBalance" EntityType="Self.CardBalance" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cards" EntityType="Self.Cards" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__CardBalan__CardI__35BCFE0A" Association="Self.FK__CardBalan__CardI__35BCFE0A">
-            <End Role="Cards" EntitySet="Cards" />
-            <End Role="CardBalance" EntitySet="CardBalance" />
+          <EntitySet Name="BankCardBalans" EntityType="Self.BankCardBalans" Schema="inc" store:Type="Tables" />
+          <EntitySet Name="BankCards" EntityType="Self.BankCards" Schema="inc" store:Type="Tables" />
+          <EntitySet Name="Banks1" EntityType="Self.Banks1" Schema="inc" Table="Banks" store:Type="Tables" />
+          <AssociationSet Name="FK__BankCardB__CardI__5BE2A6F2" Association="Self.FK__BankCardB__CardI__5BE2A6F2">
+            <End Role="Banks1" EntitySet="Banks1" />
+            <End Role="BankCardBalans" EntitySet="BankCardBalans" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cards__BankId__2B3F6F97" Association="Self.FK__Cards__BankId__2B3F6F97">
-            <End Role="Banks" EntitySet="Banks" />
-            <End Role="Cards" EntitySet="Cards" />
+          <AssociationSet Name="FK__BankCards__BankI__5812160E" Association="Self.FK__BankCards__BankI__5812160E">
+            <End Role="Banks1" EntitySet="Banks1" />
+            <End Role="BankCards" EntitySet="BankCards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="bCardsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Bank">
+        <EntityContainer Name="BankContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BankCardBalans" EntityType="bCardsModel.BankCardBalan" />
+          <EntitySet Name="BankCards" EntityType="bCardsModel.BankCard" />
+          <EntitySet Name="Banks1" EntityType="bCardsModel.Bank" />
+          <AssociationSet Name="FK__BankCardB__CardI__5BE2A6F2" Association="bCardsModel.FK__BankCardB__CardI__5BE2A6F2">
+            <End Role="Banks1" EntitySet="Banks1" />
+            <End Role="BankCardBalan" EntitySet="BankCardBalans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BankCards__BankI__5812160E" Association="bCardsModel.FK__BankCards__BankI__5812160E">
+            <End Role="Banks1" EntitySet="Banks1" />
+            <End Role="BankCard" EntitySet="BankCards" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BankCardBalan">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Cards" Relationship="Self.FK__Cards__BankId__2B3F6F97" FromRole="Banks" ToRole="Cards" />
-        </EntityType>
-        <EntityType Name="CardBalance">
-          <Key>
-            <PropertyRef Name="CardId" />
-            <PropertyRef Name="Date" />
-          </Key>
           <Property Name="CardId" Type="Guid" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
-          <NavigationProperty Name="Card" Relationship="Self.FK__CardBalan__CardI__35BCFE0A" FromRole="CardBalance" ToRole="Cards" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Balans" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Banks" Relationship="bCardsModel.FK__BankCardB__CardI__5BE2A6F2" FromRole="BankCardBalan" ToRole="Banks1" />
         </EntityType>
-        <EntityType Name="Card">
+        <EntityType Name="BankCard">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BankId" Type="Int32" Nullable="false" />
-          <Property Name="ExparyDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Bank" Relationship="Self.FK__Cards__BankId__2B3F6F97" FromRole="Cards" ToRole="Banks" />
-          <NavigationProperty Name="CardBalances" Relationship="Self.FK__CardBalan__CardI__35BCFE0A" FromRole="Cards" ToRole="CardBalance" />
+          <Property Name="BankId" Type="Guid" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="ExpiryDate" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Banks" Relationship="bCardsModel.FK__BankCards__BankI__5812160E" FromRole="BankCard" ToRole="Banks1" />
         </EntityType>
-        <Association Name="FK__Cards__BankId__2B3F6F97">
-          <End Role="Banks" Type="Self.Bank" Multiplicity="1" />
-          <End Role="Cards" Type="Self.Card" Multiplicity="*" />
+        <EntityType Name="Bank">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="BankCardBalans" Relationship="bCardsModel.FK__BankCardB__CardI__5BE2A6F2" FromRole="Banks1" ToRole="BankCardBalan" />
+          <NavigationProperty Name="BankCards" Relationship="bCardsModel.FK__BankCards__BankI__5812160E" FromRole="Banks1" ToRole="BankCard" />
+        </EntityType>
+        <Association Name="FK__BankCardB__CardI__5BE2A6F2">
+          <End Type="bCardsModel.Bank" Role="Banks1" Multiplicity="1" />
+          <End Type="bCardsModel.BankCardBalan" Role="BankCardBalan" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Banks">
+            <Principal Role="Banks1">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Cards">
-              <PropertyRef Name="BankId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__CardBalan__CardI__35BCFE0A">
-          <End Role="Cards" Type="Self.Card" Multiplicity="1" />
-          <End Role="CardBalance" Type="Self.CardBalance" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cards">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CardBalance">
+            <Dependent Role="BankCardBalan">
               <PropertyRef Name="CardId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BankContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Banks" EntityType="Self.Bank" />
-          <EntitySet Name="CardBalances" EntityType="Self.CardBalance" />
-          <EntitySet Name="Cards" EntityType="Self.Card" />
-          <AssociationSet Name="FK__Cards__BankId__2B3F6F97" Association="Self.FK__Cards__BankId__2B3F6F97">
-            <End Role="Banks" EntitySet="Banks" />
-            <End Role="Cards" EntitySet="Cards" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CardBalan__CardI__35BCFE0A" Association="Self.FK__CardBalan__CardI__35BCFE0A">
-            <End Role="Cards" EntitySet="Cards" />
-            <End Role="CardBalance" EntitySet="CardBalances" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK__BankCards__BankI__5812160E">
+          <End Type="bCardsModel.Bank" Role="Banks1" Multiplicity="1" />
+          <End Type="bCardsModel.BankCard" Role="BankCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Banks1">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BankCard">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="bCardsModelStoreContainer" CdmEntityContainer="BankContext">
-          <EntitySetMapping Name="Banks">
-            <EntityTypeMapping TypeName="bCardsModel.Bank">
-              <MappingFragment StoreEntitySet="Banks">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CardBalances">
-            <EntityTypeMapping TypeName="bCardsModel.CardBalance">
-              <MappingFragment StoreEntitySet="CardBalance">
-                <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <EntitySetMapping Name="BankCardBalans">
+            <EntityTypeMapping TypeName="bCardsModel.BankCardBalan">
+              <MappingFragment StoreEntitySet="BankCardBalans">
+                <ScalarProperty Name="Balans" ColumnName="Balans" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="CardId" ColumnName="CardId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cards">
-            <EntityTypeMapping TypeName="bCardsModel.Card">
-              <MappingFragment StoreEntitySet="Cards">
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <EntitySetMapping Name="BankCards">
+            <EntityTypeMapping TypeName="bCardsModel.BankCard">
+              <MappingFragment StoreEntitySet="BankCards">
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="BankId" ColumnName="BankId" />
-                <ScalarProperty Name="ExparyDate" ColumnName="ExparyDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banks1">
+            <EntityTypeMapping TypeName="bCardsModel.Bank">
+              <MappingFragment StoreEntitySet="Banks1">
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

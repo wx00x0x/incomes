@@ -17,13 +17,19 @@ namespace XXWx.Incoms.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bank()
         {
-            this.Cards = new HashSet<Card>();
+            this.BankCardBalans = new HashSet<BankCardBalan>();
+            this.BankCards = new HashSet<BankCard>();
         }
     
-        public int Id { get; set; }
+        public System.Guid Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public string PhoneNumber { get; set; }
+        public byte[] Logo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Card> Cards { get; set; }
+        public virtual ICollection<BankCardBalan> BankCardBalans { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BankCard> BankCards { get; set; }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XXWx.Incoms.BL
+namespace XXWx.Incoms.Repository.Interfaces
 {
-    public class Class1
-    {
-    }
+	public interface IBankRepository
+	{
+	}
 }

@@ -12,12 +12,13 @@ namespace XXWx.Incoms.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class CardBalance
+    public partial class BankCardBalan
     {
+        public int Id { get; set; }
         public System.Guid CardId { get; set; }
         public System.DateTime Date { get; set; }
-        public decimal Balance { get; set; }
+        public decimal Balans { get; set; }
     
-        public virtual Card Card { get; set; }
+        public virtual Bank Banks { get; set; }
     }
 }

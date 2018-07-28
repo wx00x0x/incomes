@@ -26,8 +26,8 @@ namespace XXWx.Incoms.DAL.EfConnection
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual IDbSet<Bank> Banks { get; set; }
-        public virtual IDbSet<CardBalance> CardBalances { get; set; }
-        public virtual IDbSet<Card> Cards { get; set; }
+        public virtual IDbSet<BankCardBalan> BankCardBalans { get; set; }
+        public virtual IDbSet<BankCard> BankCards { get; set; }
+        public virtual IDbSet<Bank> Banks1 { get; set; }
     }
 }

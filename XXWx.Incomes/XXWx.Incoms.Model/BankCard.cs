@@ -12,21 +12,13 @@ namespace XXWx.Incoms.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Card
+    public partial class BankCard
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Card()
-        {
-            this.CardBalances = new HashSet<CardBalance>();
-        }
-    
         public System.Guid Id { get; set; }
+        public System.Guid BankId { get; set; }
         public string Description { get; set; }
-        public int BankId { get; set; }
-        public Nullable<System.DateTime> ExparyDate { get; set; }
+        public string ExpiryDate { get; set; }
     
-        public virtual Bank Bank { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CardBalance> CardBalances { get; set; }
+        public virtual Bank Banks { get; set; }
     }
 }
