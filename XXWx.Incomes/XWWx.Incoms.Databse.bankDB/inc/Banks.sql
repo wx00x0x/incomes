@@ -1,0 +1,8 @@
+﻿CREATE TABLE [inc].[Banks]
+(
+	[Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID()
+	, [Name] NVARCHAR(32) NOT NULL
+	, [Description] NVARCHAR(120)
+	, [PhoneNumber] NVARCHAR(16)
+	, [Logo] IMAGE
+)

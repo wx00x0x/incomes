@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [sam]
+    WITH PASSWORD = N'sw@peagydqqumcPbenf0|{ttmsFT7_&#$!~<zqXy{nzjedyt', SID = 0xB89A40465A30834F8EC726222902B8EB, DEFAULT_DATABASE = [bCards], DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+

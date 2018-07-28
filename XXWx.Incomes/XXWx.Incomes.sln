@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XXWx.Incoms.DAL.EfConnectio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XXWx.Incoms.BL", "XXWx.Incoms.BL\XXWx.Incoms.BL.csproj", "{FCFE1A9C-97C3-4479-8F9A-303AD7677DCB}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "XWWx.Incoms.Databse.bankDB", "XWWx.Incoms.Databse.bankDB\XWWx.Incoms.Databse.bankDB.sqlproj", "{30DC652D-7FE2-4645-8B17-7216CA8EB549}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,12 @@ Global
 		{FCFE1A9C-97C3-4479-8F9A-303AD7677DCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCFE1A9C-97C3-4479-8F9A-303AD7677DCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCFE1A9C-97C3-4479-8F9A-303AD7677DCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +60,7 @@ Global
 		{9E591FB4-656C-4C7F-B514-C409E47268B7} = {F4BDB3DD-6712-42A9-9657-B82275FF974C}
 		{0C3FDD92-918A-4C07-AA21-E5B302BC3B55} = {F4BDB3DD-6712-42A9-9657-B82275FF974C}
 		{F4C1B31D-29CC-4BE4-A315-22C446266354} = {F4BDB3DD-6712-42A9-9657-B82275FF974C}
+		{30DC652D-7FE2-4645-8B17-7216CA8EB549} = {8C807BC6-0BE4-4DE5-AE46-420B286E065D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6E134474-A953-454A-BF67-73DAD6396ABD}
